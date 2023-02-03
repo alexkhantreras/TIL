@@ -20,7 +20,7 @@ Then, `cmd+i` brings up intellisense, including snippets.
 
 
 ## Make VS Code the default editor
-- Add the following env var to bash profile
+- Set the following env var in bash profile
     - `export EDITOR="code -w"`
 - In VS Code, install the `code` command to PATH
     - `cmd + shift + p`
