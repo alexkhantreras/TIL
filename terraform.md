@@ -41,3 +41,29 @@ To target the above example resource we would run
 ```bash
 terraform [environment] [command] -target=resource_parent.resource-property
 ```
+
+## Terraform types
+You can define explicit types for Terraform variables. For example, storage accounts can be defined like so to ensure uniformity across modules.
+
+```terraform
+# variable.tf
+variable "storage_accounts" {
+  type = map(object({
+    account_tier             = string
+    account_kind             = string
+    account_replication_type = string
+    versioning_enabled       = bool
+    is_hns_enabled           = bool
+    roles = list(object({
+      objectId     = string
+      storage_role = string
+    }))
+    containers = list(object({
+      name        = string
+      access_type = string
+    }))
+  }))
+}
+```
+
+Any use of a storage_accounts variable that doesn't conform to this type will throw an error.
